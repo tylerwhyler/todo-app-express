@@ -1,5 +1,6 @@
 const express = require("express")
 const mongoose = require("mongoose")
+const cors = require("cors")
 
 const app = express()
 const port = 3500
@@ -15,12 +16,13 @@ mongoose.connect("mongodb://localhost:27017/express-todo", {
     useNewUrlParser: true
 }, err => {
     if (err) {
-        console.log(`DB connection erro: ${err}`)
+        console.log(`DB connection err: ${err}`)
     } else {
         console.log("DB connected")
     }
 })
 
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
